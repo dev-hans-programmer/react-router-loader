@@ -5,11 +5,13 @@ import Menu, {loader as menuLoader} from "./features/menu/menu";
 import CreateOrder from "./features/order/create-order";
 import Order from "./features/order/order";
 import AppLayout from "./ui/app-layout";
+import Error from "./ui/error";
 import Home from "./ui/home";
 
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
+    errorElement: <Error />,
     children: [
       {
         path: "/",
@@ -18,6 +20,7 @@ const router = createBrowserRouter([
       {
         path: "/menu",
         element: <Menu />,
+        errorElement: <Error />,
         loader: menuLoader
       },
       {
