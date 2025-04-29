@@ -1,9 +1,8 @@
 import { formatCurrency } from "../../utils/helpers";
+import { IMenuItem } from "./types";
 
 interface Props {
-  pizza: {
-    id: string, name: string, unitPrice: number, ingredients: string[], soldOut: boolean, imageUrl: string
-  }
+  pizza: IMenuItem;
 }
 
 function MenuItem({ pizza }: Props) {
@@ -14,7 +13,7 @@ function MenuItem({ pizza }: Props) {
       <img src={imageUrl} alt={name} />
       <div>
         <p>{name}</p>
-        <p>{ingredients.join(', ')}</p>
+        <p>{ingredients.join(", ")}</p>
         <div>
           {!soldOut ? <p>{formatCurrency(unitPrice)}</p> : <p>Sold out</p>}
         </div>
