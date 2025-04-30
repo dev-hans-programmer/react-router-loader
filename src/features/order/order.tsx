@@ -1,5 +1,7 @@
 // Test ID: IIDSAT
 
+import { LoaderFunctionArgs, useLoaderData, useParams } from "react-router-dom";
+import { getOrder } from "../../services/api-restaurant";
 import {
   calcMinutesLeft,
   formatCurrency,
@@ -13,7 +15,7 @@ const order = {
   address: "Arroios, Lisbon , Portugal",
   priority: true,
   estimatedDelivery: "2027-04-25T10:00:00",
-  status:'',
+  status: "",
   cart: [
     {
       pizzaId: 7,
@@ -42,7 +44,12 @@ const order = {
   priorityPrice: 19,
 };
 
-function Order() {
+function Order(props) {
+  const { orderId } = useParams();
+  const loadedOrder = useLoaderData();
+  console.log({
+    loadedOrder,
+  });
   // Everyone can search for all orders, so for privacy reasons we're gonna gonna exclude names or address, these are only for the restaurant staff
   const {
     id,
@@ -82,6 +89,15 @@ function Order() {
       </div>
     </div>
   );
+}
+
+export async function loader({ params }: LoaderFunctionArgs) {
+  const { orderId } = params;
+
+  if (!orderId) throw new Error("We need an order ID to search for an order");
+
+  const order = await getOrder(orderId);
+  return order;
 }
 
 export default Order;
