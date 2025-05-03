@@ -18,7 +18,7 @@ export async function getOrder(id: string) {
   return data;
 }
 
-export async function createOrder(newOrder: Record<string,string>) {
+export async function createOrder(newOrder: Record<string,string | boolean>) {
   try {
     const res = await fetch(`${API_URL}/order`, {
       method: 'POST',
