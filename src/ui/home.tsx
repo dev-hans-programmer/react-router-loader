@@ -1,7 +1,9 @@
+import CreateUser from "../features/user/create-user";
+
 function Home() {
   return (
-    <div className="text-xl text-center font-semibold text-stone-800">
-      <h1>
+    <div className="mt-2 text-center">
+      <h1 className="mb-4 text-xl font-semibold text-stone-800">
         The best pizza.
         <br />
         <span className="text-yellow-500">
@@ -9,6 +11,7 @@ function Home() {
         </span>
 
       </h1>
+      <CreateUser />
     </div>
   );
 }
